@@ -2,10 +2,16 @@
 #include<stdio.h>
 int a=0,b=0,c=0,d=0;
 %}
+
+digit [0-9]
+
 %%
-[+]?[0-9]+ {printf("Postive Integer %d",a);a++;}
-[-]{1}[0-9]+ {printf("Negative Integer %d",b);b++;}
-[+]?[0-9]+[.]{1}[0-9]+ {printf("Postive Fraction %d",c);c++;}
-[-]?[0-9]+[.]{1}[0-9]+ {printf("Negative Fraction %d",d);d++;}
+
+[^-?\d+(,\d+)*(\.\d+(e\d+)?)?]$ { printf("Decimal"); }
+.	{ printf("Wrong Input"); }
+
 %%
-int main(){yylex();}
+
+int main(void){ 
+yylex(); 
+}
